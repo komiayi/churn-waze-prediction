@@ -21,7 +21,7 @@ The work was carried out as part of the **Google Advanced Data Analytics Profess
 
 ---
 
-## ⚖️ Ethical considerations and metric choice
+## Ethical considerations and metric choice
 
 Before any modeling, the consequences of model errors were explicitly evaluated:
 
