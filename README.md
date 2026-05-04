@@ -1,4 +1,4 @@
-# Waze User Churn Prediction
+# Waze user churn prediction
 
 > A supervised machine-learning pipeline that predicts which Waze users are at risk of churning, based on behavioral features. Three tree-based models are compared (Decision Tree, Random Forest, XGBoost) and the final model is selected through cross-validation and decision-threshold optimization.
 
@@ -15,7 +15,7 @@
 
 This project develops a **binary classification model** to identify Waze users who are likely to churn, using behavioral indicators such as activity days, sessions, and navigation patterns. The objective is to provide the business with an early-warning tool that supports targeted retention campaigns.
 
-The work was carried out as part of the **Google Advanced Data Analytics Professional Certificate (Coursera)** capstone project, and extended with additional methodological refinements — most notably an explicit decision-threshold optimization step on the validation set.
+The work was carried out as part of the **Google Advanced Data Analytics Professional Certificate (Coursera)** capstone project, and extended with additional methodological refinements - most notably an explicit decision-threshold optimization step on the validation set.
 
 >  **[View the full Jupyter notebook →](notebooks/Waze_ML.ipynb)**
 
@@ -25,8 +25,8 @@ The work was carried out as part of the **Google Advanced Data Analytics Profess
 
 Before any modeling, the consequences of model errors were explicitly evaluated:
 
-- **False negative** (predicted as retained but actually churned): Waze fails to act and loses a user — direct, measurable cost.
-- **False positive** (predicted as churned but actually retained): Waze sends an unnecessary retention message — minor cost, mostly reputational.
+- **False negative** (predicted as retained but actually churned): Waze fails to act and loses a user - direct, measurable cost.
+- **False positive** (predicted as churned but actually retained): Waze sends an unnecessary retention message - minor cost, mostly reputational.
 
 Given this asymmetry, **recall was selected as the primary evaluation metric**: maximizing the proportion of at-risk users correctly identified takes priority over minimizing false alarms.
 
@@ -40,9 +40,9 @@ This choice also addresses the **moderate class imbalance** of the dataset (18% 
 
 Three tree-based classifiers were tuned and compared on the same training data:
 
-1. **Decision Tree** — used as a transparent baseline.
-2. **Random Forest** — bagging-based ensemble.
-3. **XGBoost** — gradient-boosted trees.
+1. **Decision Tree** - used as a transparent baseline.
+2. **Random Forest** - bagging-based ensemble.
+3. **XGBoost** - gradient-boosted trees.
 
 ### Class imbalance handling
 
@@ -86,17 +86,17 @@ Final model: **XGBoost** with classification threshold optimized at **0.49** on 
 
 The most influential features identified by the model align with intuitive engagement signals:
 
-1. **`activity_days`** — number of days the user was active in the last month.
-2. **`total_navigations_fav1`** — navigations to the user's primary favorite location.
-3. **`n_days_after_onboarding`** — overall tenure on the platform.
-4. **`percent_sessions_in_last_month`** — recency of engagement relative to total history.
-5. **`duration_minutes_drives`** and **`km_per_driving_day`** — intensity of recent driving behavior.
+1. **`activity_days`** - number of days the user was active in the last month.
+2. **`total_navigations_fav1`** - navigations to the user's primary favorite location.
+3. **`n_days_after_onboarding`** - overall tenure on the platform.
+4. **`percent_sessions_in_last_month`** - recency of engagement relative to total history.
+5. **`duration_minutes_drives`** and **`km_per_driving_day`** - intensity of recent driving behavior.
 
 Conversely, features such as `professional_driver` and `km_per_drive` carried very low predictive weight, suggesting they could be removed without material loss in performance.
 
 ### Interpretation
 
-The model successfully captures roughly two thirds of actual churners, at the cost of a moderate false-positive rate (precision around 0.31). Given the asymmetric cost structure described above — where missing a churner is costly and a false alarm is cheap — this trade-off is acceptable and aligned with the business objective. The model can therefore serve as a screening tool that flags at-risk users for targeted retention campaigns, rather than as a precision instrument for individual decisions.
+The model successfully captures roughly two thirds of actual churners, at the cost of a moderate false-positive rate (precision around 0.31). Given the asymmetric cost structure described above; where missing a churner is costly and a false alarm is cheap; this trade-off is acceptable and aligned with the business objective. The model can therefore serve as a screening tool that flags at-risk users for targeted retention campaigns, rather than as a precision instrument for individual decisions.
 
 ---
 
